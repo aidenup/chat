@@ -1,0 +1,14 @@
+{
+  "name": "socket-chat-example",
+  "version": "0.0.1",
+  "description": "socket.io app",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "koa": "^2.13.4",
+    "socket.io": "^4.5.1"
+  }
+}
