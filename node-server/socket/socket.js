@@ -1,10 +1,19 @@
 const socketServer = (io) => {
   let userList = new Map()
+  let roomList = new Map()
   io.on('connection', (socket) => {
     // 客户端申请加入
     socket.on('join', joinInfo => {
       if(joinInfo.name === '') {
         socket.emit('error', '请输入用户名')
+        return
+      }
+      if(!socket.rooms.has(joinInfo.roomName)) {
+        socket.emit('tips', {
+          code: '1',
+          tipMsg: '没有此聊天室'
+        })
+        return
       }
       userList.set(socket.id, joinInfo)
       // 加入成功给客户端回应
@@ -22,11 +31,27 @@ const socketServer = (io) => {
         uList
       })
     })
+
+    // 创建聊天室
+    socket.on('createChatRoom', (roomName)=> {
+      if(socket.rooms.has(roomName)) {
+        socket.emit('tips', {
+          code: '1',
+          tipMsg: '已有此聊天室'
+        })
+      }else {
+        socket.join(roomName)
+        socket.emit('tips', {
+          code: '0',
+          tipMsg: '创建成功'
+        })
+      }
+      console.log(socket.rooms);
+    })
     
     // 客户端发送消息
     socket.on('send', e => {
-      console.log(e);
-      socket.broadcast.emit('message', e)
+      socket.broadcast.to(e.roomName).emit('message', e)
     })
   
     // 用户退出播报
