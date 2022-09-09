@@ -19,7 +19,7 @@ io.on("connection", socket => {
   socket.on("login", async userId => {
     await socketModel.saveUserSocketId(userId, socketId)
   })
-
+  
   
 
 })

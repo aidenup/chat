@@ -1,24 +1,27 @@
 <script setup lang="ts">
-import SideMenu from '@/components/menu/SideMenu.vue';
-import Friends from '@/pages/chat/Friends.vue';
-import ChatBox from './chat/ChatBox.vue';
+import LeftSidebar from './chat/LeftSidebar.vue';
+import MessageCon from './chat/MessageCon.vue';
 
 </script>
 <template>
   <div class="layout">
-    <SideMenu />
-    <div class="content">
-      <Friends />
-      <ChatBox />
+    <div class="left">
+      <LeftSidebar />
     </div>
-  </div>
+    <div class="right">
+      <MessageCon />
+    </div>
+  </div>  
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 .layout {
   display: flex;
-  background-color: antiquewhite;
-  .content {
-    display: flex;
+  height: 100vh;
+  .left {
+    width: 300px;
+  }
+  .right {
+    flex: 1;
   }
 }
 </style>
