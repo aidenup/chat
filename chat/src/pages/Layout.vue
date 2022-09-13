@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import LeftSidebar from './chat/LeftSidebar.vue';
 import MessageCon from './chat/MessageCon.vue';
+import SideMenu from '@/components/menu/SideMenu.vue';
 
 </script>
 <template>
   <div class="layout">
+    <div class="sidebar_menu">
+      <SideMenu />
+    </div>
     <div class="left">
       <LeftSidebar />
     </div>
@@ -17,6 +21,11 @@ import MessageCon from './chat/MessageCon.vue';
 .layout {
   display: flex;
   height: 100vh;
+  .sidebar_menu {
+    width: 70px;
+    background-color: #316340;
+    height: 100vh;
+  }
   .left {
     width: 300px;
   }

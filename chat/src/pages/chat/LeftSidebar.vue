@@ -22,13 +22,14 @@ import MessageListItem from './common/MessageListItem.vue';
 
 </template>
 <style lang="scss" scoped>
+@import "@/styles/index.scss";
+
 .left_sidebar {
   height: 100vh;
   border-right: 1px solid rgba(0, 0, 0, .1);
 }
-
 .header {
-  height: 50px;
+  height: $row_head;
   display: flex;
   align-items: center;
   padding: 8px 15px;
@@ -59,7 +60,7 @@ import MessageListItem from './common/MessageListItem.vue';
 .search {
   box-sizing: border-box;
   display: flex;
-
+  height: 50px;
   input {
     flex: 1;
     margin: 10px 15px;
@@ -70,11 +71,12 @@ import MessageListItem from './common/MessageListItem.vue';
 }
 
 .message_menu {
+  height: 50px;
   padding: 15px 15px;
 }
 
 .message_list {
-  height: calc(100vh - 150px);
+  height: calc(100vh - $row_head - 50px - 50px);
   overflow: auto;
 }
 </style>
