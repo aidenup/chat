@@ -1,11 +1,11 @@
 const mysql = require('mysql')
-const { config } = require('process')
-const dbConfig = require('../config')
+const dbConfig = require('../config').db
 const pool = mysql.createPool({
-  user: config.user,
+  host: dbConfig.host,
+  port: dbConfig.port,
+  user: dbConfig.user,
   password: dbConfig.password,
   database: dbConfig.database,
-  host: dbConfig.host
 })
 
 let query = function(sql, values) {
@@ -26,6 +26,10 @@ let query = function(sql, values) {
     })
   })
 }
+// let _sql = "SELECT * FROM account WHERE email= '2965157945@qq.com'"
+// query(_sql).then(res=> {
+//   console.log(res);
+// })
 
 module.exports = {
   query
