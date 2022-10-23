@@ -2,7 +2,9 @@
 import { io } from 'socket.io-client'
 import { reactive } from 'vue'
 import { Api } from '@/api-adapter'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const socket = io('ws://localhost:3301', {
 
 })
@@ -20,8 +22,6 @@ socket.on('back', e => {
   
 })
 
-
-
 const submit = async () => {
   if(userAccount.name === '' || userAccount.password === '') return
   // send()
@@ -33,6 +33,7 @@ const submit = async () => {
   Api.login(req).then(res => {
     console.log(res);
   })
+  // router.push('/layout')
 }
 
 
