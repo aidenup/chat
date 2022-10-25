@@ -32,7 +32,7 @@ account.post('/login', async (ctx, next) => {
         message: '登录成功',
         data: {
           token,
-          ...res[0] 
+          username: res[0].username
         }
       }
     } else {

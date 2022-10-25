@@ -6,7 +6,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosError, AxiosResponse } f
  */
 interface Result {
   code: number,
-  msg: string
+  message: string
 }
 
 /**
@@ -43,8 +43,6 @@ class RequestHttp {
      */
     this.service.interceptors.request.use(
       (config: AxiosRequestConfig) => {
-        console.log(config);
-        
         const token = localStorage.getItem('token') || ''
         return {
           ...config,

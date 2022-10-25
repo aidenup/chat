@@ -3,37 +3,46 @@ import { io } from 'socket.io-client'
 import { reactive } from 'vue'
 import { Api } from '@/api-adapter'
 import { useRouter } from 'vue-router'
+import { Login } from '@/api-adapter/model/account'
+import { ElMessage } from 'element-plus'
 
 const router = useRouter()
-const socket = io('ws://localhost:3301', {
+// 创建webscoket 实例
+const socket = io('ws://localhost:3301', {})
 
-})
-const userAccount = reactive<{name: string, password: string}>({
-  name: '',
-  password: ''
+const userAccount = reactive<Login.LoginReqForm>({
+  email: '2965157945@qq.com',
+  password: '123456'
 })
 
 const send = () => {
   socket.emit('send', '来自客户端的消息')
 }
-
 socket.on('back', e => {
   console.log(e);
-  
 })
 
-const submit = async () => {
-  if(userAccount.name === '' || userAccount.password === '') return
-  // send()
-  let req = {
-    username: '111',
-    password: '1234556'
-  }
+// 加入群聊
+const handleJoin = (username: string) => {
+  socket.emit('join', {username})
+}
 
-  Api.login(req).then(res => {
-    console.log(res);
+const submit = async () => {
+  if(userAccount.email === '' || userAccount.password === '') {
+    ElMessage.closeAll()
+    ElMessage.warning('请输入完整')
+  }
+  Api.login(userAccount).then(res => {
+    if(res.code === 200 && res.data) {
+      window.localStorage.setItem('item', res.data.token)
+      ElMessage.success('登录成功！')
+      handleJoin(res.data.username)
+      setTimeout(() => {
+        ElMessage.closeAll()
+        router.push('/layout')
+      }, 1000);
+    }
   })
-  // router.push('/layout')
 }
 
 
@@ -42,7 +51,7 @@ const submit = async () => {
   <div class="login_container">
     <div class="left">1</div>
     <div class="right column_center">
-      <input v-model="userAccount.name" type="text" placeholder="账号">
+      <input v-model="userAccount.email" type="text" placeholder="账号">
       <input v-model="userAccount.password" type="text" placeholder="密码">
       <button @click="submit">登录</button>
     </div>

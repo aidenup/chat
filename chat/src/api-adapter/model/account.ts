@@ -1,12 +1,13 @@
 import axios from '../request'
 
-namespace Login {
+export declare namespace Login {
   export interface LoginReqForm {
-    username: string
+    email: string
     password: string
   }
   export interface LoginResData {
-    token: string
+    token: string,
+    username: string
   }
 }
 
