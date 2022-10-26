@@ -1,6 +1,8 @@
+const { query } = require('../utils/db')
+
 let saveUserSocketId = function(userId, socketId) {
   const data = [socketId, userId]
-  let _sql = `update user_info set socketid = ? where id = ? limit 1;`
+  let _sql = `update account set socketid = ? where id = ? limit 1;`
   return query(_sql, data)
 }
 let getUserSocketId = function(toUserId) {

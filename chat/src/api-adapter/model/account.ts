@@ -7,7 +7,8 @@ export declare namespace Login {
   }
   export interface LoginResData {
     token: string,
-    username: string
+    username: string,
+    id: string
   }
 }
 

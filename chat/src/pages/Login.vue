@@ -35,6 +35,10 @@ const submit = async () => {
   Api.login(userAccount).then(res => {
     if(res.code === 200 && res.data) {
       window.localStorage.setItem('item', res.data.token)
+
+      socket.emit('login', res.data.id)
+
+
       ElMessage.success('登录成功！')
       handleJoin(res.data.username)
       setTimeout(() => {

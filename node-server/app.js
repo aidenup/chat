@@ -32,20 +32,17 @@ io.on("connection", socket => {
   })
   // 私聊
   socket.on('sendPrivateMsg', async data => {
-    
+    const arr = await socketModel.getUserSocketId(data.to_user)
+    //....
   })
   // 群聊
   socket.on('sendGroupMsg', async data => {
-
+    console.log(data);
+    // io.sockets.emit("getGroupMsg", data)
   })
 
-  socket.on('send', e => {
-    console.log(e);
-    socket.emit('back', '服务器返回的消息')
-  })
-
-  socket.on('disconnecting', () => {
-    console.log('用户离开');
+  socket.on('disconnect', data => {
+    console.log('disconnect', data);
   })
 })
 

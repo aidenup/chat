@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import MessageListItem from './common/MessageListItem.vue';
+import AddChat from './common/AddChat.vue';
+import { ref } from 'vue';
+
+const isAddChat = ref(false)
+
 
 </script>
 <template>
@@ -8,7 +13,7 @@ import MessageListItem from './common/MessageListItem.vue';
       <div class="avatar">
         <img src="" />
         <span class="user_name">username</span>
-        <span class="setup">*</span>
+        <span class="setup" @click="isAddChat=true">*</span>
       </div>
     </div>
     <div class="search">
@@ -19,7 +24,7 @@ import MessageListItem from './common/MessageListItem.vue';
       <MessageListItem v-for="item in 20" :active="item === 2 ? true : false" />
     </div>
   </div>
-
+  <AddChat v-if="isAddChat" @on-change="isAddChat = false" />
 </template>
 <style lang="scss" scoped>
 @import "@/styles/index.scss";
