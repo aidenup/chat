@@ -37,8 +37,8 @@ io.on("connection", socket => {
   })
   // 群聊
   socket.on('sendGroupMsg', async data => {
-    console.log(data);
-    // io.sockets.emit("getGroupMsg", data)
+    console.log('aaa');
+    io.sockets.emit("getGroupMsg", data)
   })
 
   socket.on('disconnect', data => {
