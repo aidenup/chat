@@ -1,14 +1,13 @@
 <script lang="ts" setup>
-import { io } from 'socket.io-client'
 import { reactive } from 'vue'
 import { Api } from '@/api-adapter'
 import { useRouter } from 'vue-router'
 import { Login } from '@/api-adapter/model/account'
 import { ElMessage } from 'element-plus'
+import socket from '@/utils/socket'
 
 const router = useRouter()
 // 创建webscoket 实例
-const socket = io('ws://localhost:3301', {})
 
 const userAccount = reactive<Login.LoginReqForm>({
   email: '2965157945@qq.com',
@@ -34,7 +33,7 @@ const submit = async () => {
   }
   Api.login(userAccount).then(res => {
     if(res.code === 200 && res.data) {
-      window.localStorage.setItem('item', res.data.token)
+      window.localStorage.setItem('token', res.data.token)
 
       socket.emit('login', res.data.id)
 

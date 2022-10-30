@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import MessageListItem from './common/MessageListItem.vue';
-import AddChat from './common/AddChat.vue';
 import { ref } from 'vue';
+import CreatGroup from '../CreatGroup.vue';
 
-const isAddChat = ref(false)
-
+const isCreateGroup = ref(false)
 
 </script>
 <template>
@@ -13,7 +12,7 @@ const isAddChat = ref(false)
       <div class="avatar">
         <img src="" />
         <span class="user_name">username</span>
-        <span class="setup" @click="isAddChat=true">*</span>
+        <span class="setup" @click="isCreateGroup=true">*</span>
       </div>
     </div>
     <div class="search">
@@ -24,7 +23,7 @@ const isAddChat = ref(false)
       <MessageListItem v-for="item in 20" :active="item === 2 ? true : false" />
     </div>
   </div>
-  <AddChat v-if="isAddChat" @on-change="isAddChat = false" />
+  <CreatGroup v-if="isCreateGroup" @on-create="isCreateGroup = false" />
 </template>
 <style lang="scss" scoped>
 @import "@/styles/index.scss";
