@@ -1,9 +1,18 @@
 <script setup lang="ts">
 import MessageListItem from './common/MessageListItem.vue';
-import { ref } from 'vue';
+import AddressBook from './common/AddressBook.vue'
+import { ref, watch } from 'vue';
 import CreatGroup from '../CreatGroup.vue';
+import useStore from '@/store';
+import { storeToRefs } from 'pinia';
 
+const { panelType } = storeToRefs(useStore().menuStore)
 const isCreateGroup = ref(false)
+
+watch(() => panelType.value, (val) => {
+  console.log(val);
+  
+})
 
 </script>
 <template>
@@ -18,9 +27,14 @@ const isCreateGroup = ref(false)
     <div class="search">
       <input type="text" />
     </div>
-    <div class="message_menu">message_menu</div>
-    <div class="message_list">
-      <MessageListItem v-for="item in 20" :active="item === 2 ? true : false" />
+    <div class="panel" v-if="panelType === 'msg'">
+      <div class="message_menu">message_menu</div>
+      <div class="message_list">
+        <MessageListItem v-for="item in 20" :active="item === 2 ? true : false" />
+      </div>
+    </div>
+    <div class="panel" v-if="panelType === 'addressBook'">
+      <AddressBook />
     </div>
   </div>
   <CreatGroup v-if="isCreateGroup" @on-create="isCreateGroup = false" />

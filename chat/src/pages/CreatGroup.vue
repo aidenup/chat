@@ -8,6 +8,8 @@ const emit = defineEmits<{
   (e: 'onCreate'): void
 }>()
 
+let group_id: string = ''
+
 const groupInfo = reactive({
   group_name: '',
   create_time: ''
@@ -22,6 +24,8 @@ const createGroup = () => {
   Api.createGroup(groupInfo).then(res=> {
     if(res.code === 200) {
       ElMessage.success('创建成功')
+      group_id = res.data!.group_id
+      joinGroup()
       setTimeout(() => {
         ElMessage.closeAll()
         emit('onCreate')
@@ -30,8 +34,16 @@ const createGroup = () => {
       ElMessage.warning('创建失败')
     }
   })
-
 }
+
+const joinGroup = () => {
+  Api.joinGroup({group_id: group_id})
+  .then(res => {
+    console.log(res);
+    
+  })
+}
+
 </script>
 <template>
   <div class="create_group">
