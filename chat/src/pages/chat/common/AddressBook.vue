@@ -49,6 +49,6 @@ const selectGroup = () => {
 </template>
 <style lang="scss" scoped>
 .address_book_container {
-  padding: 0 10px;
+  padding: 0 12px;
 }
 </style> 
