@@ -24,9 +24,16 @@ const selectGroupByUserId = function(user_id) {
   return query(_sql, [user_id])
 }
 
+// 删除群
+const exitGroup = (user_id, group_id) => {
+  let _sql = "DELETE FROM group_user_relation WHERE user_id = ? AND group_id = ?;"
+  return query(_sql, [user_id, group_id])
+}
+
 module.exports = {
   createGroup,
   joinGroup,
   isINGroup,
-  selectGroupByUserId
+  selectGroupByUserId,
+  exitGroup
 }
