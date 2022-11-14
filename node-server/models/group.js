@@ -20,9 +20,13 @@ const isINGroup = function(user_id, group_id) {
 
 // 根据用户id 查询群
 const selectGroupByUserId = function(user_id) {
-  let _sql = "SELECT * FROM group_user_relation WHERE user_id = ?;"
+  let _sql = `SELECT u.user_id,u.group_id,g.group_name 
+              FROM group_user_relation AS u 
+              LEFT JOIN group_info as g 
+              on u.group_id=g.group_id WHERE u.user_id=?;`
   return query(_sql, [user_id])
 }
+
 
 // 删除群
 const exitGroup = (user_id, group_id) => {

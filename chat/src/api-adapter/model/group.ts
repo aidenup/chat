@@ -20,7 +20,7 @@ export const group = {
     return axios.post('/group/join_group', params)
   },
   // 根据user_id 查询群
-  selectByUserId() {
+  selectGroupByUserId() {
     return axios.get('/group/select_group_byuserid')
   }
 }

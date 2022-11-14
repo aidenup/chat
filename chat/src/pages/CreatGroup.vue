@@ -14,6 +14,10 @@ const groupInfo = reactive({
   group_name: '',
   create_time: ''
 })
+
+/**
+ * 创建群聊，并加入群聊
+ */
 const createGroup = () => {
   if(groupInfo.group_name === '') {
     ElMessage.closeAll()
@@ -21,14 +25,17 @@ const createGroup = () => {
     return
   }
   groupInfo.create_time = new Date().toString()
-  Api.createGroup(groupInfo).then(res=> {
+  Api.createGroup(groupInfo).then(async (res)=> {
     if(res.code === 200) {
       ElMessage.success('创建成功')
       group_id = res.data!.group_id
-      joinGroup()
+      await joinGroup().then(res => {
+        console.log('aaa', res);
+      })
       setTimeout(() => {
         ElMessage.closeAll()
         emit('onCreate')
+        
       }, 1000);
     } else {
       ElMessage.warning('创建失败')
@@ -37,10 +44,9 @@ const createGroup = () => {
 }
 
 const joinGroup = () => {
-  Api.joinGroup({group_id: group_id})
+  return Api.joinGroup({group_id: group_id})
   .then(res => {
-    console.log(res);
-    
+    return res
   })
 }
 

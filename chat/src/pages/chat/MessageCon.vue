@@ -1,5 +1,37 @@
 <script setup lang="ts">
+import socket from '@/utils/socket';
 import MessageList from './common/MessageList.vue';
+
+// 获取聊天记录
+const getChatMsg = () => {
+
+}
+
+//发送信息
+const sendMessage = () => {
+  let data = {
+    groupId: 'xxx', //群id
+    group_name: 'xxx', //群名称
+    group_avator: 'xxx', //群头像
+    groupMember: [], //所有群成员的id
+    from_user: 'xxx', //自己的id
+    name: 'xxx', //自己的昵称
+    avator: 'xxx', //自己的头像
+    message: 'xxx', //消息内容
+    time: 'xxx' //时间
+  }
+  socket.emit('sendGroupMsg', data)
+
+}
+//保存此条信息到数据库
+const saveMsgByDB = () => {
+
+}
+
+// 获取socket消息
+const getMsgBySocket = () => {
+  
+} 
 
 </script>
 <template>
@@ -30,7 +62,7 @@ import MessageList from './common/MessageList.vue';
       <div class="input_con flex">
         <input class="input" type="text" />
         <div class="tools row_center">
-          <span class="send ">发送</span>
+          <span class="send " @click="sendMessage">发送</span>
         </div>
       </div>
     </div>

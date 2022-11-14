@@ -1,3 +1,4 @@
+<!-- 消息组件 -->
 <script setup lang="ts">
 
 const props = defineProps<{

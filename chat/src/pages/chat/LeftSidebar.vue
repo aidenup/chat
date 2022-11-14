@@ -1,3 +1,4 @@
+<!-- 左侧菜单栏 -->
 <script setup lang="ts">
 import MessageListItem from './common/MessageListItem.vue';
 import AddressBook from './common/AddressBook.vue'

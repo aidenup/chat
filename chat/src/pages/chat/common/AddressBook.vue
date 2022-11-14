@@ -4,9 +4,9 @@ import { Api } from '@/api-adapter';
 import { ref } from 'vue';
 
 interface GroupList {
-  id: number
   user_id: string
   group_id: string
+  group_name: string
 }
 
 const activeNames = ref([])  // active 需要记录状态
@@ -17,10 +17,13 @@ const handleChange = (val: string[]) => {
 }
 
 const selectGroup = () => {
-  Api.selectByUserId().then(res => {
-    console.log(res.data);
+  Api.selectGroupByUserId().then(res => {
     groupList.value = res.data as GroupList[]
   })
+}
+
+const goChat = (group_id: string) => {
+  
 }
 
 
@@ -32,9 +35,13 @@ const selectGroup = () => {
         title="群聊"
         name="1"
       >
-        <ul>
-          <li v-for="item in groupList">
-            {{item.id}} {{item.group_id}}
+        <ul class="group_list">
+          <li 
+            class="group_item" 
+            v-for="item in groupList" 
+            :key="item.group_id"
+            @click="goChat(item.group_id)">
+            {{item.group_name}}
           </li>
         </ul>
       </el-collapse-item>
@@ -51,4 +58,12 @@ const selectGroup = () => {
 .address_book_container {
   padding: 0 12px;
 }
-</style> 
+.group_list {
+  .group_item {
+    border-bottom: 1px solid rgba($color: #000000, $alpha: .05);
+    padding: 7px;
+    cursor: pointer;
+  }
+}
+
+</style>
