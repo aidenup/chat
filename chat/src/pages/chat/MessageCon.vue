@@ -25,12 +25,12 @@ const sendMessage = () => {
 }
 //保存此条信息到数据库
 const saveMsgByDB = () => {
-
+  
 }
 
 // 获取socket消息
 const getMsgBySocket = () => {
-  
+
 } 
 
 </script>

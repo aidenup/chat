@@ -39,6 +39,7 @@ io.on("connection", socket => {
   socket.on('sendGroupMsg', async data => {
     console.log('aaa');
     io.sockets.emit("getGroupMsg", data)
+    // 这里接收到 群消息 然后 emit 到客户端  客户端再做处理
   })
 
   socket.on('disconnect', data => {
