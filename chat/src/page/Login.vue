@@ -3,9 +3,6 @@
 </script>
 <template>
   <div>
-    home
+    {{$t("Login.username")}}
   </div>
 </template>
-<style lang="scss">
-
-</style>

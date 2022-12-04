@@ -1,26 +1,18 @@
 {
-  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeBuildCommand": "pnpm build",
     "beforeDevCommand": "pnpm dev",
-    "devPath": "http://localhost:5174",
-    "distDir": "../dist"
+    "beforeBuildCommand": "pnpm build",
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist",
+    "withGlobalTauri": false
   },
   "package": {
     "productName": "chat",
-    "version": "0.1.0"
+    "version": "0.0.0"
   },
   "tauri": {
     "allowlist": {
-      "all": true,
-      "http": {
-        "all": true,
-        "request": true,
-        "scope": [
-          "http://**",
-          "https://**"
-        ]
-      }
+      "all": true
     },
     "bundle": {
       "active": true,
@@ -37,7 +29,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.chat.dev",
+      "identifier": "com.tauri.dev",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -64,10 +56,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 800,
+        "height": 600,
         "resizable": true,
-        "title": "anotion chat",
-        "width": 1200
+        "title": "chat",
+        "width": 800
       }
     ]
   }
