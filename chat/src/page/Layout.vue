@@ -2,28 +2,19 @@
 
 </script>
 <template>
-  <header>header</header>
-  <div class="columns">
-    <div class="sidebar">sidebar</div>
-    <div class="content">
+  <div class="flex">
+    <div class="sidebar" data-tauri-drag-region>
+      side
+    </div>
+    <div class="page">
       <router-view></router-view>
     </div>
   </div>
 </template>
 <style lang="scss">
-header {
-  height: 50px;
-}
-.columns {
-  display: flex;
-  .sidebar {
-    width: 130px;
-    height: calc(100vh - 52px);
-    border: 1px solid red;
-  }
-  .content {
-    flex: 1;
-    border: 1px solid #000;
-  }
+.sidebar {
+  width: 65px;
+  background-color: #C9E1E8;
+  height: 100vh;
 }
 </style>

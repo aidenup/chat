@@ -1,1 +1,0 @@
-<template>pageB</template>

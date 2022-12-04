@@ -1,34 +1,22 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Layout from '@/page/Layout.vue'
-import Login from '@/page/Login.vue'
-import PageAVue from '@/page/PageA.vue'
-import PageBVue from '@/page/PageB.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
-    name: 'login',
-    component: Login,
-    meta: {
-      title: 'login'
-    }
+    name: 'Login',
+    component: () => import('@/page/Login.vue')
   },
   {
     path: '/',
     name: 'home',
-    component: Layout,
-    redirect: '/pageA',
+    component: () => import('@/page/Layout.vue'),
+    redirect: '/chat',
     children: [
       {
-        path: '/pageA',
-        name: 'pageA',
-        component: PageAVue
+        path: '/chat',
+        name: 'Chat',
+        component: () => import('@/page/Chat/index.vue')
       },
-      {
-        path: '/pageB',
-        name: 'pageB',
-        component: PageBVue
-      }
     ]
   }
 ]
