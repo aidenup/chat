@@ -42,7 +42,21 @@ const drapContent = () => {
     <div class="width-auto">
       <div class="content">
         <div id="left" class="left">
-          左侧
+          <div class="search">
+            <input type="text" placeholder="search...">
+          </div>
+          <div class="message">
+            <div class="chat-menu">
+              <span>All Chats</span>
+              <span>Groups</span>
+              <span>Contacts</span>
+            </div>
+          </div>
+          <div class="chat-list">
+            <div class="chat-item" v-for="item in 10">
+              username
+            </div>
+          </div>
         </div>
         <div id="line" class="resize-line"></div>
         <div id="right" class="right">
@@ -51,11 +65,32 @@ const drapContent = () => {
       </div>
     </div>
 </template>
-<style>
+<style scoped lang="scss">
+.search {
+  border: 1px solid #000;
+}
+.chat-menu {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  span {
+    background-color: rgb(201, 245, 254);
+    border-radius: 10px;
+    padding: 3px 5px;
+  }
+}
+.chat-list {
+
+  chat-item {
+
+  }
+}
+
 .width-auto {
-  width: calc(100vw - 65px);
+  width: calc(100vw - 76px);
   height: 100%;
   box-sizing: border-box;
+  box-shadow: 0px 0px 20px -17px rgba($color: #000000, $alpha: 1.0);
 }
 .content {
   display: flex;
@@ -66,7 +101,7 @@ const drapContent = () => {
 .left {
   width: 200px;
   height: 100%;
-  background-color: antiquewhite;
+  background-color: #fff;
 }
 
 .resize-line {
@@ -77,11 +112,16 @@ const drapContent = () => {
   max-width: 3px;
   background-color: transparent;
 }
+.resize-line:hover {
+  width: 10px;
+  max-width: 10px;
+  background-color: #000;
+}
 
 .right {
   flex: 1;
   user-select: none;
-  background-color: azure;
+  background-color: #FAFBFD;
 }
 
 </style>

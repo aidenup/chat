@@ -1,20 +1,17 @@
 <script setup lang="ts">
+import SideBar from '@/components/sidebar/SideBar.vue'
 
 </script>
 <template>
-  <div class="flex">
-    <div class="sidebar" data-tauri-drag-region>
-      side
-    </div>
+  <div class="layout flex">
+    <SideBar />
     <div class="page">
       <router-view></router-view>
     </div>
   </div>
 </template>
 <style lang="scss">
-.sidebar {
-  width: 65px;
-  background-color: #C9E1E8;
-  height: 100vh;
+.layout {
+  background-color: #F9FAFC;
 }
 </style>

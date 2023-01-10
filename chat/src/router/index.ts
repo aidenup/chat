@@ -17,6 +17,11 @@ const routes: Array<RouteRecordRaw> = [
         name: 'Chat',
         component: () => import('@/page/Chat/index.vue')
       },
+      {
+        path: '/todo',
+        name: 'Todo',
+        component: () => import('@/page/TodoList/index.vue')
+      }
     ]
   }
 ]
