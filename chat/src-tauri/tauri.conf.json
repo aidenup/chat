@@ -2,7 +2,7 @@
   "build": {
     "beforeDevCommand": "pnpm dev",
     "beforeBuildCommand": "pnpm build",
-    "devPath": "http://localhost:1420",
+    "devPath": "http://localhost:1421",
     "distDir": "../dist",
     "withGlobalTauri": false
   },
@@ -60,6 +60,8 @@
         "resizable": true,
         "title": "chat",
         "width": 800,
+        "minHeight": 600,
+        "minWidth": 800,
         "hiddenTitle": true,
         "titleBarStyle": "Overlay"
       }
